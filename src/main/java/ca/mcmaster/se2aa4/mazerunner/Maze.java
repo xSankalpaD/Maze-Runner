@@ -65,7 +65,7 @@ public class Maze {
      */
     private Position findEnd() throws Exception {
         for (int i = 0; i < maze.size(); i++) {
-            Position pos = new Position(maze.getFirst().size() - 1, i);
+            Position pos = new Position(maze.get(0).size() - 1, i);
             if (!isWall(pos)) {
                 return pos;
             }
@@ -107,7 +107,7 @@ public class Maze {
      * @return Horizontal size
      */
     public int getSizeX() {
-        return this.maze.getFirst().size();
+        return this.maze.get(0).size();
     }
 
     /**
@@ -126,16 +126,17 @@ public class Maze {
      * @return If path is valid
      */
     public Boolean validatePath(Path path) {
-        return validatePathDir(path, getStart(), Direction.RIGHT, getEnd()) || validatePathDir(path, getEnd(), Direction.LEFT, getStart());
+        return validatePathDir(path, getStart(), Direction.RIGHT, getEnd())
+                || validatePathDir(path, getEnd(), Direction.LEFT, getStart());
     }
 
     /**
      * Check if path is valid from starting to end position.
      *
-     * @param path Path
+     * @param path     Path
      * @param startPos Starting position
      * @param startDir Starting direction
-     * @param endPos Ending position
+     * @param endPos   Ending position
      * @return If path is valid
      */
     private Boolean validatePathDir(Path path, Position startPos, Direction startDir, Position endPos) {

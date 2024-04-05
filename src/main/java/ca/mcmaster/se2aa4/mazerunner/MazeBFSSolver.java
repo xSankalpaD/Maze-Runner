@@ -6,7 +6,7 @@ import org.apache.logging.log4j.Logger;
 import java.util.ArrayDeque;
 import java.util.Queue;
 
-public class MazeSolverBFS implements MazeSolver {
+public class MazeBFSSolver implements MazeSolver {
     private static final Logger logger = LogManager.getLogger();
     private Maze maze;
     private boolean[][] marked;

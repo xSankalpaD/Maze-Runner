@@ -18,7 +18,12 @@ public class Main {
             String filePath = cmd.getOptionValue('i');
             Maze maze = new Maze(filePath);
 
-            if (cmd.getOptionValue("p") != null) {
+            if (cmd.getOptionValue("baseline") != null) {
+                logger.info("BenchMark");
+
+            }
+
+            else if (cmd.getOptionValue("p") != null) {
                 logger.info("Validating path");
                 Path path = new Path(cmd.getOptionValue("p"));
                 if (maze.validatePath(path)) {

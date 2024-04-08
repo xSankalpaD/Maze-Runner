@@ -19,7 +19,10 @@ public class Main {
             Maze maze = new Maze(filePath);
 
             if (cmd.getOptionValue("baseline") != null) {
-                logger.info("BenchMark");
+                Benchmarking bench = new Benchmarking(cmd.getOptionValue("method"), cmd.getOptionValue("baseline"),
+                        maze);
+
+                bench.test();
 
             }
 
@@ -92,7 +95,7 @@ public class Main {
 
         options.addOption(new Option("p", true, "Path to be verified in maze"));
         options.addOption(new Option("method", true, "Specify which path computation algorithm will be used"));
-
+        options.addOption(new Option("baseline", true, "Compare with Method and given algorithms will be used"));
         return options;
     }
 }

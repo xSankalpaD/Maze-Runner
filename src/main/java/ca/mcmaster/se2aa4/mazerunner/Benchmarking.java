@@ -5,36 +5,38 @@ import org.apache.logging.log4j.Logger;
 
 public class Benchmarking {
     private static final Logger logger = LogManager.getLogger();
+    private String method;
+    private String baseline;
+    private Maze maze;
 
     public Benchmarking(String method, String baseline, Maze maze) {
-        MazeSolver solver1;
-        MazeSolver solver2;
-        Path path1;
-        Path path2;
+        this.method = method;
+        this.baseline = baseline;
+        this.maze = maze;
 
-        long mTimeStart;
-        long mTimeEnd;
-        float methodTime;
+    }
 
-        long bTimeStart;
-        long bTimeEnd;
-        float baselineTime;
+    public void test() {
+        MazeSolver solveMethod, solveBase;
+        Path pathMethod, pathBase;
 
-        float Speedup;
+        long startTimeMethod, endTimeMethod, startTimeBase, endTimeBase;
+        float methodTime, baseTime;
+        float speedUp;
 
         switch (method) {
             case "righthand" -> {
                 logger.debug("RightHand method chosen.");
-                solver1 = new RightHandSolver();
+                solveMethod = new RightHandSolver();
             }
             case "tremaux" -> {
                 logger.debug("Tremaux method chosen.");
-                solver1 = new TremauxSolver();
+                solveMethod = new TremauxSolver();
             }
 
-            case "bfs" -> {
-                logger.debug("Breadth First Search method chosen.");
-                solver1 = new MazeBFSSolver();
+            case "BFS" -> {
+                logger.debug("BFS method chosen.");
+                solveMethod = new MazeBFSSolver();
             }
             default -> {
                 throw new RuntimeException("Maze solving method '" + method + "' not supported.");
@@ -44,38 +46,38 @@ public class Benchmarking {
         switch (baseline) {
             case "righthand" -> {
                 logger.debug("RightHand method chosen.");
-                solver2 = new RightHandSolver();
+                solveBase = new RightHandSolver();
             }
             case "tremaux" -> {
                 logger.debug("Tremaux method chosen.");
-                solver2 = new TremauxSolver();
+                solveBase = new TremauxSolver();
             }
 
-            case "bfs" -> {
-                logger.debug("Breadth First Search method chosen.");
-                solver2 = new MazeBFSSolver();
+            case "BFS" -> {
+                logger.debug("BFS method chosen.");
+                solveBase = new MazeBFSSolver();
             }
             default -> {
                 throw new RuntimeException("Maze solving baseline '" + baseline + "' not supported.");
             }
         }
 
-        logger.info("Benchmarking");
+        System.out.println("Start Benchmarking...");
 
-        mTimeStart = System.nanoTime();
-        path1 = solver1.solve(maze);
-        mTimeEnd = System.nanoTime();
-        methodTime = (mTimeEnd - mTimeStart) / 1000000f;
-        System.out.printf("Runtime %s = %.2f ms\n", method, methodTime);
+        startTimeMethod = System.nanoTime();
+        pathMethod = solveMethod.solve(maze);
+        endTimeMethod = System.nanoTime();
 
-        bTimeStart = System.nanoTime();
-        path2 = solver2.solve(maze);
-        bTimeEnd = System.nanoTime();
-        baselineTime = (bTimeEnd - bTimeStart) / 1000000f;
-        System.out.printf("Runtime %s = %.2f ms\n", baseline, baselineTime);
+        methodTime = (endTimeMethod - startTimeMethod) / 1000000f;
+        System.out.println("Runtime for " + method + ": " + String.format("%.2f", methodTime) + " ms");
 
-        Speedup = (path2.getCanonicalForm().length()) * 1f / (path1.getCanonicalForm().length());
-        System.out.printf("Runtime Speedup = %.2f\n", Speedup);
+        startTimeBase = System.nanoTime();
+        pathBase = solveBase.solve(maze);
+        endTimeBase = System.nanoTime();
+        baseTime = (endTimeBase - startTimeBase) / 1000000f;
+        System.out.println("Runtime for " + baseline + ": " + String.format("%.2f", baseTime) + " ms");
+
+        speedUp = (pathBase.getCanonicalForm().length()) * 1f / (pathMethod.getCanonicalForm().length());
+        System.out.println("Runtime for Speedup : " + String.format("%.2f", speedUp));
     }
-
 }

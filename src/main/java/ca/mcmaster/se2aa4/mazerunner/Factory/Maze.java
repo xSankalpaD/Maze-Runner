@@ -1,7 +1,11 @@
-package ca.mcmaster.se2aa4.mazerunner;
+package ca.mcmaster.se2aa4.mazerunner.Factory;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import ca.mcmaster.se2aa4.mazerunner.Direction;
+import ca.mcmaster.se2aa4.mazerunner.Path;
+import ca.mcmaster.se2aa4.mazerunner.Position;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -39,6 +43,7 @@ public class Maze {
         }
         start = findStart();
         end = findEnd();
+        reader.close();
     }
 
     /**

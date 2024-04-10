@@ -1,22 +1,31 @@
-package ca.mcmaster.se2aa4.mazerunner;
+package ca.mcmaster.se2aa4.mazerunner.Factory;
 
+import org.apache.commons.cli.CommandLine;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class Benchmarking {
+import ca.mcmaster.se2aa4.mazerunner.MazeBFSSolver;
+import ca.mcmaster.se2aa4.mazerunner.MazeSolver;
+import ca.mcmaster.se2aa4.mazerunner.Path;
+import ca.mcmaster.se2aa4.mazerunner.RightHandSolver;
+import ca.mcmaster.se2aa4.mazerunner.TremauxSolver;
+
+public class Benchmarking implements MazeExplorer {
     private static final Logger logger = LogManager.getLogger();
     private String method;
     private String baseline;
     private Maze maze;
 
-    public Benchmarking(String method, String baseline, Maze maze) {
+    public Benchmarking(String method, String baseline) {
         this.method = method;
         this.baseline = baseline;
-        this.maze = maze;
+        // this.maze = maze;
 
     }
 
-    public void test() {
+    @Override
+    public void runs(Maze maze) {
+
         MazeSolver solveMethod, solveBase;
         Path pathMethod, pathBase;
 

@@ -4,6 +4,12 @@ import org.apache.commons.cli.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import ca.mcmaster.se2aa4.mazerunner.Factory.Benchmarking;
+import ca.mcmaster.se2aa4.mazerunner.Factory.Maze;
+import ca.mcmaster.se2aa4.mazerunner.Factory.MazeExplorer;
+import ca.mcmaster.se2aa4.mazerunner.Factory.PathCalculator;
+import ca.mcmaster.se2aa4.mazerunner.Factory.PathValidation;
+
 public class Main {
 
     private static final Logger logger = LogManager.getLogger();
@@ -17,28 +23,9 @@ public class Main {
             cmd = parser.parse(getParserOptions(), args);
             String filePath = cmd.getOptionValue('i');
             Maze maze = new Maze(filePath);
+            MazeExplorer explorer = decisionMaker(cmd, maze);
 
-            if (cmd.getOptionValue("baseline") != null) {
-                Benchmarking bench = new Benchmarking(cmd.getOptionValue("method"), cmd.getOptionValue("baseline"),
-                        maze);
-
-                bench.test();
-
-            }
-
-            else if (cmd.getOptionValue("p") != null) {
-                logger.info("Validating path");
-                Path path = new Path(cmd.getOptionValue("p"));
-                if (maze.validatePath(path)) {
-                    System.out.println("correct path");
-                } else {
-                    System.out.println("incorrect path");
-                }
-            } else {
-                String method = cmd.getOptionValue("method", "righthand");
-                Path path = solveMaze(method, maze);
-                System.out.println(path.getFactorizedForm());
-            }
+            explorer.runs(maze);
         } catch (Exception e) {
             System.err.println("MazeSolver failed.  Reason: " + e.getMessage());
             logger.error("MazeSolver failed.  Reason: " + e.getMessage());
@@ -48,37 +35,15 @@ public class Main {
         logger.info("End of MazeRunner");
     }
 
-    /**
-     * Solve provided maze with specified method.
-     *
-     * @param method Method to solve maze with
-     * @param maze   Maze to solve
-     * @return Maze solution path
-     * @throws Exception If provided method does not exist
-     */
-    private static Path solveMaze(String method, Maze maze) throws Exception {
-        MazeSolver solver = null;
-        switch (method) {
-            case "righthand" -> {
-                logger.debug("RightHand algorithm chosen.");
-                solver = new RightHandSolver();
-            }
-            case "tremaux" -> {
-                logger.debug("Tremaux algorithm chosen.");
-                solver = new TremauxSolver();
-            }
-            case "BFS" -> {
-                logger.debug("BFS Algorithm chosen.");
-                solver = new MazeBFSSolver();
-
-            }
-            default -> {
-                throw new Exception("Maze solving method '" + method + "' not supported.");
-            }
+    public static MazeExplorer decisionMaker(CommandLine cmd, Maze maze) {
+        if (cmd.getOptionValue("baseline") != null) {
+            return (new Benchmarking(cmd.getOptionValue("method"), cmd.getOptionValue("baseline")));
+        } else if (cmd.getOptionValue("p") != null) {
+            return (new PathValidation(cmd));
+        } else {
+            return (new PathCalculator(cmd));
         }
 
-        logger.info("Computing path");
-        return solver.solve(maze);
     }
 
     /**

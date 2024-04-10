@@ -3,6 +3,8 @@ package ca.mcmaster.se2aa4.mazerunner;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import ca.mcmaster.se2aa4.mazerunner.Factory.Maze;
+
 public class RightHandSolver implements MazeSolver {
     private static final Logger logger = LogManager.getLogger();
 

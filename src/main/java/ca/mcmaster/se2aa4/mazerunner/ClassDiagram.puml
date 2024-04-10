@@ -1,0 +1,84 @@
+@startuml
+package "ca.mcmaster.se2aa4.mazerunner" {
+    enum Direction {
+        UP
+        DOWN
+        LEFT
+        RIGHT
+        
+    }
+
+    
+    class Node {
+        
+    }
+
+    class Position {
+        x: int
+        y: int
+        
+    }
+
+    class Path {
+        -pathSteps: List<Character>
+        +Path(path: String)
+        +getPathSteps(): List<Character>
+        +getCanonicalForm(): String
+        +getFactorizedForm(): String
+    }
+    class MazeBFSSolver{
+
+    } 
+    class Main{
+
+    }
+    class MazeSolver{
+        +solve()
+    }
+    class RightHandSolver{
+
+    }
+    class TremauxSolver{
+
+    }
+    package "ca.mcmaster.se2aa4.mazerunner.Factory" {
+        interface MazeExplorer {
+            +runs(): Maze
+        }
+
+        class Benchmarking {
+        
+        }   
+
+        class PathCalculator {
+        
+        }
+        class PathValidation{
+
+        }
+        class Maze {
+        
+        -start: Position
+        -end: Position
+        
+        }
+
+    }
+}
+
+
+
+Benchmarking ..|> MazeExplorer
+PathCalculator ..|> MazeExplorer
+PathValidation ..|> MazeExplorer
+
+MazeBFSSolver ..|> MazeSolver
+RightHandSolver ..|> MazeSolver
+TremauxSolver ..|> MazeSolver
+
+MazeExplorer *--> Maze
+
+Main *-- Maze
+Main *-- MazeExplorer
+
+@enduml

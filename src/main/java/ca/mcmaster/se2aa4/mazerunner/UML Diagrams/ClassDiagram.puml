@@ -1,4 +1,4 @@
-@startuml
+@startuml ClassDiagram
 package "ca.mcmaster.se2aa4.mazerunner" {
     enum Direction {
         UP
@@ -72,6 +72,11 @@ Benchmarking ..|> MazeExplorer
 PathCalculator ..|> MazeExplorer
 PathValidation ..|> MazeExplorer
 
+PathCalculator --> MazeSolver
+
+TremauxSolver --> Path
+
+
 Benchmarking --> MazeSolver
 
 MazeBFSSolver ..|> MazeSolver
@@ -82,15 +87,17 @@ MazeExplorer *--> Maze
 
 Main o--> Maze
 Main o--> MazeExplorer
+Main *--> Benchmarking
+Main *--> PathCalculator
+Main *--> PathValidation
+
 
 MazeBFSSolver o--> Maze
 MazeBFSSolver --> Node
 MazeBFSSolver --> Path
-MazeBFSSolver --> Node
 MazeBFSSolver --> Direction
 MazeBFSSolver --> Position
 
-Node o--> Direction
 Node o--> Position
 
 Position *--> Direction
@@ -103,7 +110,4 @@ TremauxSolver o--> Direction
 TremauxSolver o--> Position
 
 
-
-
- 
 @enduml

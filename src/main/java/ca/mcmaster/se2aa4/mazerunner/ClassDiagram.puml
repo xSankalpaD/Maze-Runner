@@ -32,7 +32,7 @@ package "ca.mcmaster.se2aa4.mazerunner" {
     class Main{
 
     }
-    class MazeSolver{
+    interface MazeSolver{
         +solve()
     }
     class RightHandSolver{
@@ -72,13 +72,38 @@ Benchmarking ..|> MazeExplorer
 PathCalculator ..|> MazeExplorer
 PathValidation ..|> MazeExplorer
 
+Benchmarking --> MazeSolver
+
 MazeBFSSolver ..|> MazeSolver
 RightHandSolver ..|> MazeSolver
 TremauxSolver ..|> MazeSolver
 
 MazeExplorer *--> Maze
 
-Main *-- Maze
-Main *-- MazeExplorer
+Main o--> Maze
+Main o--> MazeExplorer
 
+MazeBFSSolver o--> Maze
+MazeBFSSolver --> Node
+MazeBFSSolver --> Path
+MazeBFSSolver --> Node
+MazeBFSSolver --> Direction
+MazeBFSSolver --> Position
+
+Node o--> Direction
+Node o--> Position
+
+Position *--> Direction
+
+RightHandSolver *--> Path
+RightHandSolver o--> Direction
+RightHandSolver o--> Position
+
+TremauxSolver o--> Direction
+TremauxSolver o--> Position
+
+
+
+
+ 
 @enduml

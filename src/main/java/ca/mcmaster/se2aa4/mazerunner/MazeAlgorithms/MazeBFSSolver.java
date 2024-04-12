@@ -31,11 +31,14 @@ public class MazeBFSSolver implements MazeSolver {
         return findPath(exitNode);
     }
 
+    /*
+     * uses classic BFS traversal with tree nodes
+     */
     private Node traversal() {
         Direction currentDir = Direction.RIGHT;
         Position currentCell = maze.getStart();
         Position exit = maze.getEnd();
-        Node root = new Node(currentCell, currentDir, 'S'); // S for strating pos
+        Node root = new Node(currentCell, currentDir, 'S'); // S for strating position
         Queue<Node> queue = new ArrayDeque<Node>();
 
         queue.add(root);

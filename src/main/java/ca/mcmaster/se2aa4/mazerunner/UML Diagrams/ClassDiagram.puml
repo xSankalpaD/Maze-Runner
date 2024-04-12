@@ -5,12 +5,13 @@ package "ca.mcmaster.se2aa4.mazerunner" {
         DOWN
         LEFT
         RIGHT
-        
     }
 
-    
     class Node {
-        
+        Node root
+        Node R
+        Node L
+        Node M
     }
 
     class Position {
@@ -20,27 +21,29 @@ package "ca.mcmaster.se2aa4.mazerunner" {
     }
 
     class Path {
-        -pathSteps: List<Character>
-        +Path(path: String)
-        +getPathSteps(): List<Character>
-        +getCanonicalForm(): String
-        +getFactorizedForm(): String
+        
     }
+    
     class MazeBFSSolver{
 
     } 
+    
     class Main{
-
+        -load(args:String)
     }
+
     interface MazeSolver{
         +solve()
     }
+
     class RightHandSolver{
 
     }
+    
     class TremauxSolver{
 
     }
+
     package "ca.mcmaster.se2aa4.mazerunner.Factory" {
         interface MazeExplorer {
             +runs(): Maze
@@ -53,9 +56,11 @@ package "ca.mcmaster.se2aa4.mazerunner" {
         class PathCalculator {
         
         }
+
         class PathValidation{
 
         }
+
         class Maze {
         
         -start: Position

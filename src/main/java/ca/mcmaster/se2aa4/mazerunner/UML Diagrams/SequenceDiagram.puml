@@ -1,0 +1,38 @@
+@startuml SequenceDiagram
+
+participant Main
+participant MazeExplorer
+participant MazeSolver
+
+
+activate Main
+
+alt 
+Main -> MazeExplorer: Benchmarking("method", "baseline")
+activate MazeExplorer
+Main <-- MazeExplorer
+else
+Main -> MazeExplorer: PathCalculator(cmd)
+Main <-- MazeExplorer
+else
+Main -> MazeExplorer: PathValidation(cmd)
+Main <-- MazeExplorer
+deactivate MazeExplorer
+end
+
+
+Main -> MazeExplorer
+alt 
+MazeExplorer -> MazeSolver: RightHandSolver(maze)
+activate MazeSolver
+MazeExplorer <-- MazeSolver
+else
+MazeExplorer -> MazeSolver: MazeBFSSolver(maze)
+MazeExplorer <-- MazeSolver
+else
+MazeExplorer -> MazeSolver: TremauxSolver(maze)
+MazeExplorer <-- MazeSolver
+deactivate MazeSolver  
+end
+
+@enduml

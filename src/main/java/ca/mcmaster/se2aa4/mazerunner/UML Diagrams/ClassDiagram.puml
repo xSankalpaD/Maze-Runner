@@ -24,26 +24,30 @@ package "ca.mcmaster.se2aa4.mazerunner" {
         
     }
     
-    class MazeBFSSolver{
-
-    } 
+    
     
     class Main{
         -load(args:String)
     }
 
-    interface MazeSolver{
-        +solve()
-    }
-
-    class RightHandSolver{
-
-    }
     
-    class TremauxSolver{
+    package "ca.mcmaster.se2aa4.mazerunner.MazeAlgorithms"{
+        interface MazeSolver{
+        +solve()
+        }
 
-    }
+        class RightHandSolver{
 
+        }
+        
+        class TremauxSolver{
+
+        }
+        class MazeBFSSolver{
+
+        } 
+
+    } 
     package "ca.mcmaster.se2aa4.mazerunner.Factory" {
         interface MazeExplorer {
             +runs(): Maze
@@ -81,7 +85,7 @@ PathCalculator --> MazeSolver
 
 TremauxSolver --> Path
 
-
+Maze --> Position
 Benchmarking --> MazeSolver
 
 MazeBFSSolver ..|> MazeSolver
@@ -95,12 +99,13 @@ Main o--> MazeExplorer
 Main *--> Benchmarking
 Main *--> PathCalculator
 Main *--> PathValidation
-
+Path <-- PathValidation
 
 MazeBFSSolver o--> Maze
 MazeBFSSolver --> Node
 MazeBFSSolver --> Path
-MazeBFSSolver --> Direction
+PathCalculator --> Path
+
 MazeBFSSolver --> Position
 
 Node o--> Position
@@ -108,10 +113,10 @@ Node o--> Position
 Position *--> Direction
 
 RightHandSolver *--> Path
-RightHandSolver o--> Direction
+
 RightHandSolver o--> Position
 
-TremauxSolver o--> Direction
+
 TremauxSolver o--> Position
 
 

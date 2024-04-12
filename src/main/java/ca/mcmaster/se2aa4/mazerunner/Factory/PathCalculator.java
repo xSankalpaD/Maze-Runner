@@ -4,11 +4,11 @@ import org.apache.commons.cli.CommandLine;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import ca.mcmaster.se2aa4.mazerunner.MazeBFSSolver;
-import ca.mcmaster.se2aa4.mazerunner.MazeSolver;
 import ca.mcmaster.se2aa4.mazerunner.Path;
-import ca.mcmaster.se2aa4.mazerunner.RightHandSolver;
-import ca.mcmaster.se2aa4.mazerunner.TremauxSolver;
+import ca.mcmaster.se2aa4.mazerunner.MazeAlgorithms.MazeBFSSolver;
+import ca.mcmaster.se2aa4.mazerunner.MazeAlgorithms.MazeSolver;
+import ca.mcmaster.se2aa4.mazerunner.MazeAlgorithms.RightHandSolver;
+import ca.mcmaster.se2aa4.mazerunner.MazeAlgorithms.TremauxSolver;
 
 public class PathCalculator implements MazeExplorer {
     private static final Logger logger = LogManager.getLogger();

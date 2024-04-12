@@ -36,11 +36,12 @@ public class Main {
     }
 
     public static MazeExplorer decisionMaker(CommandLine cmd, Maze maze) {
+        String newpath = cmd.getOptionValue("p");
 
         if (cmd.getOptionValue("baseline") != null) {
             return (new Benchmarking(cmd.getOptionValue("method"), cmd.getOptionValue("baseline")));
-        } else if (cmd.getOptionValue("p") != null) {
-            return (new PathValidation(cmd));
+        } else if (newpath != null) {
+            return (new PathValidation(newpath));
         } else {
             return (new PathCalculator(cmd));
         }

@@ -15,7 +15,7 @@ else
 Main -> MazeExplorer: PathCalculator(cmd)
 Main <-- MazeExplorer
 else
-Main -> MazeExplorer: PathValidation(cmd)
+Main -> MazeExplorer: PathValidation(newPath)
 Main <-- MazeExplorer
 deactivate MazeExplorer
 end

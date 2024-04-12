@@ -45,4 +45,16 @@ public class Node {
     public Node getRoot() {
         return root;
     }
+
+    public Node getM() {
+        return M;
+    }
+
+    public Node getR() {
+        return R;
+    }
+
+    public Node getL() {
+        return L;
+    }
 }

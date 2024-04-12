@@ -13,16 +13,15 @@ import ca.mcmaster.se2aa4.mazerunner.TremauxSolver;
 public class PathCalculator implements MazeExplorer {
     private static final Logger logger = LogManager.getLogger();
     private CommandLine cmd;
-    private Maze maze;
 
     public PathCalculator(CommandLine cmd) {
         this.cmd = cmd;
-        // this.maze = maze;
+
     }
 
     @Override
     public void runs(Maze maze) throws RuntimeException {
-        this.maze = maze;
+
         String method = cmd.getOptionValue("method", "righthand");
         Path path = solveMaze(method, maze);
         System.out.println(path.getFactorizedForm());

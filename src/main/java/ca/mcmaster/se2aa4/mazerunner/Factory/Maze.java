@@ -27,7 +27,7 @@ public class Maze {
      * @throws Exception If maze cannot be read, or maze has no start or end
      */
     public Maze(String filePath) throws Exception {
-        logger.debug("Reading the maze from file " + filePath);
+        logger.debug("Reading the maze from file {} ", filePath);
         BufferedReader reader = new BufferedReader(new FileReader(filePath));
         String line;
         while ((line = reader.readLine()) != null) {

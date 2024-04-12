@@ -36,6 +36,7 @@ public class Main {
     }
 
     public static MazeExplorer decisionMaker(CommandLine cmd, Maze maze) {
+
         if (cmd.getOptionValue("baseline") != null) {
             return (new Benchmarking(cmd.getOptionValue("method"), cmd.getOptionValue("baseline")));
         } else if (cmd.getOptionValue("p") != null) {

@@ -25,14 +25,15 @@ Main -> MazeExplorer
 alt 
 MazeExplorer -> MazeSolver: RightHandSolver(maze)
 activate MazeSolver
-MazeExplorer <-- MazeSolver
+
 else
 MazeExplorer -> MazeSolver: MazeBFSSolver(maze)
-MazeExplorer <-- MazeSolver
+
 else
 MazeExplorer -> MazeSolver: TremauxSolver(maze)
-MazeExplorer <-- MazeSolver
+
 deactivate MazeSolver  
 end
+MazeSolver --> Main
 
 @enduml

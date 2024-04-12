@@ -9,11 +9,10 @@ import ca.mcmaster.se2aa4.mazerunner.Path;
 public class PathValidation implements MazeExplorer {
     private static final Logger logger = LogManager.getLogger();
     private CommandLine cmd;
-    private Maze maze;
 
     public PathValidation(CommandLine cmd) {
         this.cmd = cmd;
-        // this.maze = maze;
+
     }
 
     @Override

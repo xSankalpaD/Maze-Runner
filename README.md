@@ -5,6 +5,7 @@
 * **Course code**: SFWRENG 2AA4
 * **Course Title**: Software Design I - Introduction to Software Development
 * Term: *Level II - Winter 2024*
+* Credits: Alexandre and Sebastien
 
 ## Business Logic Specification
 
@@ -80,34 +81,37 @@ The delivered program at the end of this assignment should use the following fla
 
 - `-i MAZE_FILE`: specifies the filename to be used;
 - `-p PATH_SEQUENCE`: activates the path verification mode to validate that PATH_SEQUENCE is correct for the maze
-
-If you are also delivering the bonus, your program will react to a third flag:
-
-- `-method {tremaux, righthand}`: specifies which path computation method to use. (default is right hand)
+- `-method {tremaux, righthand, BFS}`: specifies which path computation method to use. (default is right hand)
+- `-method {tremaux, righthand, BFS} -baseline {tremaux, righthand, BFS} `: activates the benchmarking mode to compare the given method with the baseline
 
 #### Examples
 
 When no logs are activated, the programs only print the computed path on the standard output.
 
 ```
-mosser@azrael A1-Template % java -jar target/mazerunner.jar -i ./examples/straight.maz.txt
+a3-maze-runner-take-two-xSankalpaD$ java -jar target/mazerunner.jar -i ./examples/straight.maz.txt
 4F
-mosser@azrael A1-Template %
 ```
 
 If a given path is correct, the program prints the message `correct path` on the standard output.
 
 ```
-mosser@azrael A1-Template % java -jar target/mazerunner.jar -i ./examples/straight.maz.txt -p 4F
+a3-maze-runner-take-two-xSankalpaD$ java -jar target/mazerunner.jar -i ./examples/straight.maz.txt -p 4F
 correct path
-mosser@azrael A1-Template %
 ```
 
 If a given path is incorrect, the program prints the message `incorrect path` on the standard output.
 
 ```
-mosser@azrael A1-Template % java -jar target/mazerunner.jar -i ./examples/straight.maz.txt -p 3F
+a3-maze-runner-take-two-xSankalpaD$ java -jar target/mazerunner.jar -i ./examples/straight.maz.txt -p 3F
 inccorrect path
-mosser@azrael A1-Template %
+```
+When the program goes into the benchmarking mode, it outputs the time for method, baseline and SpeedUp time.
+
+```
+a3-maze-runner-take-two-xSankalpaD$ java -jar target/mazerunner.jar -i ./examples/giant.maz.txt -method BFS -baseline tremaux
+Runtime for BFS: 18.14 ms
+Runtime for tremaux: 12.84 ms
+Runtime for Speedup: 1.00
 ```
 

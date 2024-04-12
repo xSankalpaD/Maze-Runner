@@ -1,4 +1,4 @@
-# Assignment A1 - Maze Runner
+# Assignment A3 - new Maze Runner
 
 * **Student**: [Sankalpa Chhetri Dhakal](chhets1@mcmaster.ca)
 * **Program**: B. Eng. In Software Engineering
@@ -28,13 +28,15 @@ This program explores a maze, finding a path from an entry point to an exit one.
 - The program takes as input a maze and print the path on the standard output.
     - For this assignment, the path does not have to be the shortest one.
 - The program can take a path as input and verify if it's a legit one.
+- Multiple algorithms can be used to get the path such as RightHand, Tremaux, and BFS.
+- Benchmarking Mode can also be used to compare the performance of 2 different algorithms with the given maze. 
 
 ## How to run this software?
 
 To build the program, simply package it with Maven:
 
 ```
-mosser@azrael A1-Template % mvn -q clean package 
+a3-maze-runner-take-two-xSankalpaD$ mvn -q clean package 
 ```
 
 ### Provided version (starter code)
@@ -42,7 +44,7 @@ mosser@azrael A1-Template % mvn -q clean package
 The starter code assumes the maze file name is the first argument.
 
 ```
-mosser@azrael A1-Template % java -jar target/mazerunner.jar ./examples/small.maz.txt
+a3-maze-runner-take-two-xSankalpaD$ java -jar target/mazerunner.jar ./examples/small.maz.txt
 ** Starting Maze Runner
 **** Reading the maze from file ./examples/small.maz.txt
 WALL WALL WALL WALL WALL WALL WALL WALL WALL WALL WALL 
@@ -64,9 +66,9 @@ PATH NOT COMPUTED
 When called on a non-existing file. it prints an error message
 
 ```
-mosser@azrael A1-Template % java -jar target/mazerunner.jar ./examples/small.maz.txtd
+a3-maze-runner-take-two-xSankalpaD$ java -jar target/mazerunner.jar ./examples/small.maz.txt
 ** Starting Maze Runner
-**** Reading the maze from file ./examples/small.maz.txtd
+**** Reading the maze from file ./examples/small.maz.txt
 /!\ An error has occured /!\
 **** Computing path
 PATH NOT COMPUTED

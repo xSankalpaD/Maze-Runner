@@ -1,4 +1,4 @@
-# Assignment A3 - new Maze Runner
+# Maze Runner
 
 * **Student**: [Sankalpa Chhetri Dhakal](chhets1@mcmaster.ca)
 * **Program**: B. Eng. In Software Engineering
